@@ -1,14 +1,16 @@
 import copy # специальная утилита для "глубокого" копирования (всей структуры)
 from decimal import Decimal, ROUND_HALF_UP
 users_dic = {}
+generator_id = 0
 while True:
     print("_" * 100)
     print("1 Ввод нового пользователя \n"\
           "2 Просмотр пользователей \n"\
           "q Выход")
-    option_selection = input("Введите номер операции (1, 2, q): ")
+    option_selection = input("Введите номер операции (1, 2, q): ") 
     print("_" * 100)
     if option_selection == "1":
+        generator_id += 1
         user = {}
         user["user_name"] = input("Введите вашу Фамилию Имя Отчество: ")
         user["user_weight"] = Decimal(input("Введите вашу массу тела в килограммах: "))
@@ -25,7 +27,7 @@ while True:
         else:
             user_bmi_scale = ("20" + "=" * (user_bmi - 20) + "|" + "=" * (30 - (user_bmi - 20)) + "50")
         user["user_bmi_scale"] = user_bmi_scale
-        user_id = id(user)
+        user_id = generator_id
         new_user_result = "Пользователь: {0}\n"\
               "Масса тела: {1}\n"\
               "Рост: {2}\n"\
@@ -37,8 +39,8 @@ while True:
         print(new_user_result)
         # глубокое копирование данных
         users_dic[copy.deepcopy(user_id)] = copy.deepcopy(user)
-        # удаляет или обнуляет словарь? 
-        user.clear()
+        # очистка переменной. А надо ли?
+        user = 0
     elif option_selection == "2":
         print("1 Просмотр информации по всем пользователям \n"\
               "2 Просмотр информации по одному пользователю")
