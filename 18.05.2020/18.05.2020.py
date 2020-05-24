@@ -1,6 +1,7 @@
 import datetime
 import os
 import pytz
+import time
 class Happy_time:
     def __init__(self, time_parts):
         self.time_parts = time_parts
@@ -155,7 +156,10 @@ class Happy_time:
             str_1 = str_1 + a
         # flush=True - очищает буфер
         print(str_1, end = "", flush=True)
-        # вычищает полностью экран 
+        # приостанавливает выполнение программы на 
+        # количество секунд, указанных в скобках 
+        time.sleep(0.15)
+        # вычищает полностью экран
         os.system('cls')
 def main():
     while True:
